@@ -4,25 +4,25 @@ import pandas as pd
 # Título
 st.title("Países Mais Seguros para Viajar")
 
-# Ler arquivo CSV
-df = pd.read_csv("paises.csv")
+# Ler CSV
+df = pd.read_csv("paises.csv", sep=";")
 
-# Mostrar tabela
-st.subheader("Tabela de Dados")
+# Mostrar dados
+st.subheader("Tabela")
 st.dataframe(df)
 
-# Mostrar métricas
-st.subheader("Informações")
+# Mostrar nomes das colunas
+st.write(df.columns)
 
-st.write(f"Quantidade de países: {len(df)}")
+# Escolher colunas do gráfico
+x = df.columns[0]
+y = df.columns[1]
 
-# Filtro
-pais = st.selectbox(
-    "Escolha um país:",
-    df["País /Região:"]
+# Gráfico de barras
+st.subheader("Gráfico")
+
+st.bar_chart(
+    data=df,
+    x=x,
+    y=y
 )
-
-# Mostrar dados do país selecionado
-resultado = df[df["País /Região:"] == pais]
-
-st.write(resultado)
