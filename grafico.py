@@ -5,7 +5,7 @@ import pandas as pd
 st.title("Países Mais Seguros para Viajar")
 
 # Ler arquivo CSV
-df = pd.read_csv("Paises mais seguros para viajar  - Página1 (1).csv")
+df = pd.read_csv("paises.csv")
 
 # Mostrar tabela
 st.subheader("Tabela de Dados")
