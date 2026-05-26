@@ -1,27 +1,28 @@
 import streamlit as st
 import pandas as pd
 
-st.title("Países Mais Seguros")
+# Título
+st.title("Países Mais Seguros para Viajar")
 
-# Ler CSV
-df = pd.read_csv("paises.csv", sep=";", encoding="utf-8")
-
-# Mostrar colunas
-st.write("Colunas encontradas:")
-st.write(df.columns)
+# Ler arquivo CSV
+df = pd.read_csv("paises.csv")
 
 # Mostrar tabela
+st.subheader("Tabela de Dados")
 st.dataframe(df)
 
-# Escolher colunas
-x = st.selectbox("Escolha coluna X", df.columns)
-y = st.selectbox("Escolha coluna Y", df.columns)
+# Mostrar métricas
+st.subheader("Informações")
 
-# Criar gráfico
-st.subheader("Gráfico de Barras")
+st.write(f"Quantidade de países: {len(df)}")
 
-st.bar_chart(
-    data=df,
-    x=x,
-    y=y
+# Filtro
+pais = st.selectbox(
+    "Escolha um país:",
+    df["País /Região:"]
 )
+
+# Mostrar dados do país selecionado
+resultado = df[df["País /Região:"] == pais]
+
+st.write(resultado)
